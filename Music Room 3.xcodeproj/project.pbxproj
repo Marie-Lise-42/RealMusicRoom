@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,27 @@
 		221891FF256BBA1E00948A3A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 221891FD256BBA1E00948A3A /* Main.storyboard */; };
 		22189201256BBA1E00948A3A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22189200256BBA1E00948A3A /* Assets.xcassets */; };
 		22189204256BBA1E00948A3A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22189202256BBA1E00948A3A /* LaunchScreen.storyboard */; };
+		22189215256BBE3C00948A3A /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22189214256BBE3C00948A3A /* RoundButton.swift */; };
+		221A5E14257E4024004E6616 /* CreateUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221A5E13257E4024004E6616 /* CreateUser.swift */; };
+		224FF9E8256D1D9D0089C8E6 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224FF9E7256D1D9D0089C8E6 /* RegistrationViewController.swift */; };
+		224FF9EC256D1E1E0089C8E6 /* ValidatedRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224FF9EB256D1E1E0089C8E6 /* ValidatedRegistrationViewController.swift */; };
+		224FF9F0256D1E4A0089C8E6 /* ConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224FF9EF256D1E4A0089C8E6 /* ConnectionViewController.swift */; };
+		224FF9F4256D1E650089C8E6 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224FF9F3256D1E650089C8E6 /* HomeViewController.swift */; };
+		224FF9FD256D46510089C8E6 /* WelcolmeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224FF9FC256D46510089C8E6 /* WelcolmeViewController.swift */; };
+		225E91FE256D566900040214 /* PlaylistEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225E91FD256D566900040214 /* PlaylistEditorViewController.swift */; };
+		225E9202256D568000040214 /* ControlDelegationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225E9201256D568000040214 /* ControlDelegationViewController.swift */; };
+		225E9205256D569600040214 /* TrackVoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225E9204256D569600040214 /* TrackVoteViewController.swift */; };
+		225E9209256D56A400040214 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225E9208256D56A400040214 /* ProfileViewController.swift */; };
+		22A5D2B7257A4A7500494E56 /* Music Room 3.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 22A5D2B5257A4A7500494E56 /* Music Room 3.xcdatamodeld */; };
+		22A5D2BA257A4EF100494E56 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A5D2B9257A4EF100494E56 /* User.swift */; };
+		22A5D2BF257A4F5700494E56 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A5D2BE257A4F5700494E56 /* Event.swift */; };
+		22A5D2C2257A4FA300494E56 /* Music.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A5D2C1257A4FA300494E56 /* Music.swift */; };
+		22C027EF2583AAA5005C2209 /* LogIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C027EE2583AAA5005C2209 /* LogIn.swift */; };
+		22DBA93725700689007590B4 /* CreateEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DBA93625700689007590B4 /* CreateEventViewController.swift */; };
+		22DBA93B25705DAD007590B4 /* JoinAnEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DBA93A25705DAD007590B4 /* JoinAnEventViewController.swift */; };
+		22DBA93E25705DFC007590B4 /* MyEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DBA93D25705DFC007590B4 /* MyEventViewController.swift */; };
+		22DBA9432570609C007590B4 /* EventCreatedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DBA9422570609C007590B4 /* EventCreatedViewController.swift */; };
+		F4F52AB9B0595F347ACC12FD /* Pods_Music_Room_3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4CE09EF852A836BAFFF3E7A /* Pods_Music_Room_3.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +45,29 @@
 		22189200256BBA1E00948A3A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		22189203256BBA1E00948A3A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		22189205256BBA1E00948A3A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		22189214256BBE3C00948A3A /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
+		221A5E13257E4024004E6616 /* CreateUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUser.swift; sourceTree = "<group>"; };
+		224FF9E7256D1D9D0089C8E6 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RegistrationViewController.swift; path = "Music Room 3/Controller/RegistrationViewController.swift"; sourceTree = SOURCE_ROOT; };
+		224FF9EB256D1E1E0089C8E6 /* ValidatedRegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ValidatedRegistrationViewController.swift; path = "Music Room 3/Controller/ValidatedRegistrationViewController.swift"; sourceTree = SOURCE_ROOT; };
+		224FF9EF256D1E4A0089C8E6 /* ConnectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ConnectionViewController.swift; path = "Music Room 3/Controller/ConnectionViewController.swift"; sourceTree = SOURCE_ROOT; };
+		224FF9F3256D1E650089C8E6 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		224FF9FC256D46510089C8E6 /* WelcolmeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcolmeViewController.swift; sourceTree = "<group>"; };
+		225E91FD256D566900040214 /* PlaylistEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PlaylistEditorViewController.swift; path = "Music Room 3/Controller/PlaylistEditorViewController.swift"; sourceTree = SOURCE_ROOT; };
+		225E9201256D568000040214 /* ControlDelegationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlDelegationViewController.swift; sourceTree = "<group>"; };
+		225E9204256D569600040214 /* TrackVoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackVoteViewController.swift; sourceTree = "<group>"; };
+		225E9208256D56A400040214 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		22A5D2B6257A4A7500494E56 /* Music Room 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Music Room 3.xcdatamodel"; sourceTree = "<group>"; };
+		22A5D2B9257A4EF100494E56 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = User.swift; path = "Music Room 3/View/User.swift"; sourceTree = SOURCE_ROOT; };
+		22A5D2BE257A4F5700494E56 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		22A5D2C1257A4FA300494E56 /* Music.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Music.swift; sourceTree = "<group>"; };
+		22C027EE2583AAA5005C2209 /* LogIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LogIn.swift; path = "Music Room 3/Controller/LogIn.swift"; sourceTree = SOURCE_ROOT; };
+		22DBA93625700689007590B4 /* CreateEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CreateEventViewController.swift; path = "Music Room 3/Controller/CreateEventViewController.swift"; sourceTree = SOURCE_ROOT; };
+		22DBA93A25705DAD007590B4 /* JoinAnEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = JoinAnEventViewController.swift; path = "Music Room 3/Controller/JoinAnEventViewController.swift"; sourceTree = SOURCE_ROOT; };
+		22DBA93D25705DFC007590B4 /* MyEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyEventViewController.swift; sourceTree = "<group>"; };
+		22DBA9422570609C007590B4 /* EventCreatedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCreatedViewController.swift; sourceTree = "<group>"; };
+		2D2F3E6161F090305C9F7364 /* Pods-Music Room 3.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Music Room 3.release.xcconfig"; path = "Target Support Files/Pods-Music Room 3/Pods-Music Room 3.release.xcconfig"; sourceTree = "<group>"; };
+		B4CE09EF852A836BAFFF3E7A /* Pods_Music_Room_3.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Music_Room_3.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FABE2563AB7AC116B29FB354 /* Pods-Music Room 3.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Music Room 3.debug.xcconfig"; path = "Target Support Files/Pods-Music Room 3/Pods-Music Room 3.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4F52AB9B0595F347ACC12FD /* Pods_Music_Room_3.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +87,8 @@
 			children = (
 				221891F6256BBA1E00948A3A /* Music Room 3 */,
 				221891F5256BBA1E00948A3A /* Products */,
+				9A00C0B04136BF600D9ADE19 /* Pods */,
+				7DCE429D686B21FD9E815081 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -57,14 +104,75 @@
 			isa = PBXGroup;
 			children = (
 				221891F7256BBA1E00948A3A /* AppDelegate.swift */,
+				2218920E256BBA5900948A3A /* Controller */,
+				2218920D256BBA5200948A3A /* View */,
+				2218920C256BBA4D00948A3A /* Model */,
 				221891F9256BBA1E00948A3A /* SceneDelegate.swift */,
-				221891FB256BBA1E00948A3A /* ViewController.swift */,
-				221891FD256BBA1E00948A3A /* Main.storyboard */,
 				22189200256BBA1E00948A3A /* Assets.xcassets */,
-				22189202256BBA1E00948A3A /* LaunchScreen.storyboard */,
 				22189205256BBA1E00948A3A /* Info.plist */,
 			);
 			path = "Music Room 3";
+			sourceTree = "<group>";
+		};
+		2218920C256BBA4D00948A3A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				22C027EE2583AAA5005C2209 /* LogIn.swift */,
+				22A5D2B5257A4A7500494E56 /* Music Room 3.xcdatamodeld */,
+				22A5D2C1257A4FA300494E56 /* Music.swift */,
+				22A5D2BE257A4F5700494E56 /* Event.swift */,
+				22A5D2B9257A4EF100494E56 /* User.swift */,
+				22189214256BBE3C00948A3A /* RoundButton.swift */,
+				221A5E13257E4024004E6616 /* CreateUser.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2218920D256BBA5200948A3A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				221891FD256BBA1E00948A3A /* Main.storyboard */,
+				22189202256BBA1E00948A3A /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2218920E256BBA5900948A3A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				224FF9FC256D46510089C8E6 /* WelcolmeViewController.swift */,
+				224FF9E7256D1D9D0089C8E6 /* RegistrationViewController.swift */,
+				224FF9EB256D1E1E0089C8E6 /* ValidatedRegistrationViewController.swift */,
+				224FF9EF256D1E4A0089C8E6 /* ConnectionViewController.swift */,
+				225E91FD256D566900040214 /* PlaylistEditorViewController.swift */,
+				225E9201256D568000040214 /* ControlDelegationViewController.swift */,
+				225E9208256D56A400040214 /* ProfileViewController.swift */,
+				225E9204256D569600040214 /* TrackVoteViewController.swift */,
+				22DBA93625700689007590B4 /* CreateEventViewController.swift */,
+				22DBA9422570609C007590B4 /* EventCreatedViewController.swift */,
+				22DBA93A25705DAD007590B4 /* JoinAnEventViewController.swift */,
+				22DBA93D25705DFC007590B4 /* MyEventViewController.swift */,
+				221891FB256BBA1E00948A3A /* ViewController.swift */,
+				224FF9F3256D1E650089C8E6 /* HomeViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		7DCE429D686B21FD9E815081 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B4CE09EF852A836BAFFF3E7A /* Pods_Music_Room_3.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9A00C0B04136BF600D9ADE19 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FABE2563AB7AC116B29FB354 /* Pods-Music Room 3.debug.xcconfig */,
+				2D2F3E6161F090305C9F7364 /* Pods-Music Room 3.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +182,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 22189208256BBA1E00948A3A /* Build configuration list for PBXNativeTarget "Music Room 3" */;
 			buildPhases = (
+				F0DA418E68BF4F64AC731802 /* [CP] Check Pods Manifest.lock */,
 				221891F0256BBA1E00948A3A /* Sources */,
 				221891F1256BBA1E00948A3A /* Frameworks */,
 				221891F2256BBA1E00948A3A /* Resources */,
+				CAEFD70D67EA7981110E54CF /* [CP] Embed Pods Frameworks */,
+				C8727FBFFBAA81F0561B20B4 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -132,13 +243,92 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		C8727FBFFBAA81F0561B20B4 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Music Room 3/Pods-Music Room 3-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Music Room 3/Pods-Music Room 3-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Music Room 3/Pods-Music Room 3-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CAEFD70D67EA7981110E54CF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Music Room 3/Pods-Music Room 3-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Music Room 3/Pods-Music Room 3-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Music Room 3/Pods-Music Room 3-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F0DA418E68BF4F64AC731802 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Music Room 3-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		221891F0256BBA1E00948A3A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				225E9202256D568000040214 /* ControlDelegationViewController.swift in Sources */,
+				224FF9EC256D1E1E0089C8E6 /* ValidatedRegistrationViewController.swift in Sources */,
+				22DBA93725700689007590B4 /* CreateEventViewController.swift in Sources */,
+				225E9205256D569600040214 /* TrackVoteViewController.swift in Sources */,
+				22A5D2BF257A4F5700494E56 /* Event.swift in Sources */,
+				22A5D2B7257A4A7500494E56 /* Music Room 3.xcdatamodeld in Sources */,
+				22DBA93E25705DFC007590B4 /* MyEventViewController.swift in Sources */,
+				225E91FE256D566900040214 /* PlaylistEditorViewController.swift in Sources */,
+				22A5D2BA257A4EF100494E56 /* User.swift in Sources */,
+				224FF9F0256D1E4A0089C8E6 /* ConnectionViewController.swift in Sources */,
+				221A5E14257E4024004E6616 /* CreateUser.swift in Sources */,
+				224FF9E8256D1D9D0089C8E6 /* RegistrationViewController.swift in Sources */,
+				22A5D2C2257A4FA300494E56 /* Music.swift in Sources */,
+				22C027EF2583AAA5005C2209 /* LogIn.swift in Sources */,
+				224FF9F4256D1E650089C8E6 /* HomeViewController.swift in Sources */,
+				22189215256BBE3C00948A3A /* RoundButton.swift in Sources */,
+				22DBA93B25705DAD007590B4 /* JoinAnEventViewController.swift in Sources */,
 				221891FC256BBA1E00948A3A /* ViewController.swift in Sources */,
 				221891F8256BBA1E00948A3A /* AppDelegate.swift in Sources */,
+				225E9209256D56A400040214 /* ProfileViewController.swift in Sources */,
+				224FF9FD256D46510089C8E6 /* WelcolmeViewController.swift in Sources */,
+				22DBA9432570609C007590B4 /* EventCreatedViewController.swift in Sources */,
 				221891FA256BBA1E00948A3A /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -283,6 +473,7 @@
 		};
 		22189209256BBA1E00948A3A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FABE2563AB7AC116B29FB354 /* Pods-Music Room 3.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -296,12 +487,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "MarieLisePicard.Music-Room-3";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		2218920A256BBA1E00948A3A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2D2F3E6161F090305C9F7364 /* Pods-Music Room 3.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -315,7 +507,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "MarieLisePicard.Music-Room-3";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -341,6 +533,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		22A5D2B5257A4A7500494E56 /* Music Room 3.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				22A5D2B6257A4A7500494E56 /* Music Room 3.xcdatamodel */,
+			);
+			currentVersion = 22A5D2B6257A4A7500494E56 /* Music Room 3.xcdatamodel */;
+			path = "Music Room 3.xcdatamodeld";
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 221891EC256BBA1E00948A3A /* Project object */;
 }
