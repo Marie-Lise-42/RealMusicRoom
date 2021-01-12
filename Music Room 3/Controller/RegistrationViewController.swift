@@ -341,6 +341,8 @@ extension RegistrationViewController {
                     print("for facebook, we have a token : ")
                     self?.getMail(token: token!.tokenString)
                     print("token : ", token?.tokenString ?? "")
+                    UserDefaults.standard.setValue(token, forKey: "FbToken")
+                    CreateUser.shared.createNewFacebookUser(callback: <#T##(Bool) -> Void#>)
                 }
                 
                 self?.updateScreenAfterFBLog()

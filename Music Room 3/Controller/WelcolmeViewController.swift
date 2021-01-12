@@ -9,21 +9,23 @@ import UIKit
 
 class WelcolmeViewController: UIViewController {
     
-    // Spotify Authentication
+    /*
+ // Spotify Authentication
     let SpotifyClientID = "39c09e90077544a7a6d71a0fbf058a25"
     let SpotifyRedirectURL = URL(string: "musicroom3://login-callback")!
 
     lazy var configuration = SPTConfiguration(
       clientID: SpotifyClientID,
       redirectURL: SpotifyRedirectURL
-    )
+    )*/
     
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         print("entrée page d'accueil music room")
         print(UserDefaults.standard.bool(forKey: "logued"))
-        let loggued: Bool = UserDefaults.standard.bool(forKey: "logued")
+        //let loggued: Bool = UserDefaults.standard.bool(forKey: "logued")
+        let loggued = false
         if loggued == true {
             performSegue(withIdentifier: "logSegue1", sender: self)
         }
