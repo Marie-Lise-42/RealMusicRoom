@@ -8,32 +8,48 @@
 import UIKit
 import CoreData
 import GoogleSignIn
+import FBSDKCoreKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 
 
-
+    
+    
+    
+    
+   
+ 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
         
-        // Google Sign In Button
+        
+        
+        SpotifyToken.shared.getSpotifyToken()
+        
         GIDSignIn.sharedInstance().clientID = "442900747056-7jahnmert3dmlk3mvuepi4sllb1dm6a4.apps.googleusercontent.com"
         GIDSignIn.sharedInstance().delegate = self
         GIDSignIn.sharedInstance()?.restorePreviousSignIn()
         
+        ApplicationDelegate.shared.application( application, didFinishLaunchingWithOptions: launchOptions )
         
+       
         return true
     }
     
-    // Google Sign In Button
     func application(_ app: UIApplication,
                      open url: URL,
                      options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
+        
+       
 
-        return GIDSignIn.sharedInstance().handle(url)
-    }
+
+        let google = GIDSignIn.sharedInstance()?.handle(url) ?? false
+        
+        let facebook = ApplicationDelegate.shared.application( app, open: url, sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String, annotation: options[UIApplication.OpenURLOptionsKey.annotation] )
     
+        return google || facebook
+    }
+
     // MARK: UISceneSession Lifecycle
 
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
@@ -78,28 +94,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                 }
                 return
             }
-
-        
             let idToken = user.authentication.idToken // Safe to send to the server
-            let userId = user.userID                  // For client-side use only!
-
-            print("token !! ")
-            print(idToken!)
-            print("user Id")
-            print(userId!)
-        
+            // Add token in UserDefaults
+            UserDefaults.standard.set(idToken, forKey: "idToken")
             // Post notification after user successfully sign in
             NotificationCenter.default.post(name: .signInGoogleCompleted, object: nil)
         }
-
+    
 }
 
 // MARK:- Notification names
 // Google Sign In Button
 extension Notification.Name {
-    
+
     // Notification when user successfully sign in using Google
     static var signInGoogleCompleted: Notification.Name {
+        print("I Guess We Send a Notif HERE ? ")
         return .init(rawValue: #function)
     }
 }

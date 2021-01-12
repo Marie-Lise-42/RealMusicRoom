@@ -7,5 +7,8 @@ target 'Music Room 3' do
 
   # Pods for Music Room 3
 pod 'GoogleSignIn'
+pod 'FBSDKLoginKit'
+pod 'FBSDKCoreKit'
+
 
 end

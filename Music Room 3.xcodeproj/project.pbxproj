@@ -24,15 +24,29 @@
 		225E9202256D568000040214 /* ControlDelegationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225E9201256D568000040214 /* ControlDelegationViewController.swift */; };
 		225E9205256D569600040214 /* TrackVoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225E9204256D569600040214 /* TrackVoteViewController.swift */; };
 		225E9209256D56A400040214 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225E9208256D56A400040214 /* ProfileViewController.swift */; };
+		2287752B2588D27300ABF9F2 /* GetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2287752A2588D27300ABF9F2 /* GetPasswordViewController.swift */; };
+		2287752F2588D64400ABF9F2 /* PasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2287752E2588D64400ABF9F2 /* PasswordRequest.swift */; };
+		22877556258A229700ABF9F2 /* GoogleSubscriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22877555258A229700ABF9F2 /* GoogleSubscriptionViewController.swift */; };
+		2287755A258A46D700ABF9F2 /* MailRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22877559258A46D700ABF9F2 /* MailRegistrationViewController.swift */; };
 		22A5D2B7257A4A7500494E56 /* Music Room 3.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 22A5D2B5257A4A7500494E56 /* Music Room 3.xcdatamodeld */; };
 		22A5D2BA257A4EF100494E56 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A5D2B9257A4EF100494E56 /* User.swift */; };
 		22A5D2BF257A4F5700494E56 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A5D2BE257A4F5700494E56 /* Event.swift */; };
 		22A5D2C2257A4FA300494E56 /* Music.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A5D2C1257A4FA300494E56 /* Music.swift */; };
+		22B066FE259A12C5006089C7 /* SpotifyiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22B066FD259A12C5006089C7 /* SpotifyiOS.framework */; };
+		22B06710259A16BA006089C7 /* SpotifyToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B0670F259A16BA006089C7 /* SpotifyToken.swift */; };
+		22B06717259A194A006089C7 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B06716259A194A006089C7 /* String.swift */; };
+		22B0671B259A2669006089C7 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B0671A259A2669006089C7 /* TestViewController.swift */; };
+		22B06726259A33DD006089C7 /* ResearchResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B06725259A33DD006089C7 /* ResearchResults.swift */; };
+		22B0672D259A3AD9006089C7 /* MakeSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B0672C259A3AD9006089C7 /* MakeSearch.swift */; };
+		22B430E925A489610093E809 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B430E725A489610093E809 /* CustomTableViewCell.swift */; };
+		22B430EA25A489610093E809 /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22B430E825A489610093E809 /* CustomTableViewCell.xib */; };
+		22B430ED25A4A4F30093E809 /* ManipulateTrackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B430EC25A4A4F30093E809 /* ManipulateTrackViewController.swift */; };
 		22C027EF2583AAA5005C2209 /* LogIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C027EE2583AAA5005C2209 /* LogIn.swift */; };
 		22DBA93725700689007590B4 /* CreateEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DBA93625700689007590B4 /* CreateEventViewController.swift */; };
 		22DBA93B25705DAD007590B4 /* JoinAnEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DBA93A25705DAD007590B4 /* JoinAnEventViewController.swift */; };
 		22DBA93E25705DFC007590B4 /* MyEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DBA93D25705DFC007590B4 /* MyEventViewController.swift */; };
 		22DBA9432570609C007590B4 /* EventCreatedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DBA9422570609C007590B4 /* EventCreatedViewController.swift */; };
+		22FD833D25A890B6003AD292 /* TrackSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FD833C25A890B6003AD292 /* TrackSearchViewController.swift */; };
 		F4F52AB9B0595F347ACC12FD /* Pods_Music_Room_3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4CE09EF852A836BAFFF3E7A /* Pods_Music_Room_3.framework */; };
 /* End PBXBuildFile section */
 
@@ -56,15 +70,30 @@
 		225E9201256D568000040214 /* ControlDelegationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlDelegationViewController.swift; sourceTree = "<group>"; };
 		225E9204256D569600040214 /* TrackVoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackVoteViewController.swift; sourceTree = "<group>"; };
 		225E9208256D56A400040214 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		2287752A2588D27300ABF9F2 /* GetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GetPasswordViewController.swift; path = "Music Room 3/Controller/GetPasswordViewController.swift"; sourceTree = SOURCE_ROOT; };
+		2287752E2588D64400ABF9F2 /* PasswordRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PasswordRequest.swift; path = "Music Room 3/Controller/PasswordRequest.swift"; sourceTree = SOURCE_ROOT; };
+		22877555258A229700ABF9F2 /* GoogleSubscriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GoogleSubscriptionViewController.swift; path = "Music Room 3/Controller/GoogleSubscriptionViewController.swift"; sourceTree = SOURCE_ROOT; };
+		22877559258A46D700ABF9F2 /* MailRegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MailRegistrationViewController.swift; path = "Music Room 3/Controller/MailRegistrationViewController.swift"; sourceTree = SOURCE_ROOT; };
 		22A5D2B6257A4A7500494E56 /* Music Room 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Music Room 3.xcdatamodel"; sourceTree = "<group>"; };
 		22A5D2B9257A4EF100494E56 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = User.swift; path = "Music Room 3/View/User.swift"; sourceTree = SOURCE_ROOT; };
 		22A5D2BE257A4F5700494E56 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		22A5D2C1257A4FA300494E56 /* Music.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Music.swift; sourceTree = "<group>"; };
+		22B066FD259A12C5006089C7 /* SpotifyiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyiOS.framework; sourceTree = "<group>"; };
+		22B06703259A14BF006089C7 /* musicroom3-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "musicroom3-Bridging-Header.h"; sourceTree = "<group>"; };
+		22B0670F259A16BA006089C7 /* SpotifyToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyToken.swift; sourceTree = "<group>"; };
+		22B06716259A194A006089C7 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		22B0671A259A2669006089C7 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TestViewController.swift; path = "Music Room 3/Controller/TestViewController.swift"; sourceTree = SOURCE_ROOT; };
+		22B06725259A33DD006089C7 /* ResearchResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResearchResults.swift; sourceTree = "<group>"; };
+		22B0672C259A3AD9006089C7 /* MakeSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeSearch.swift; sourceTree = "<group>"; };
+		22B430E725A489610093E809 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomTableViewCell.swift; path = "Music Room 3/Model/CustomTableViewCell.swift"; sourceTree = SOURCE_ROOT; };
+		22B430E825A489610093E809 /* CustomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = CustomTableViewCell.xib; path = "Music Room 3/Model/CustomTableViewCell.xib"; sourceTree = SOURCE_ROOT; };
+		22B430EC25A4A4F30093E809 /* ManipulateTrackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManipulateTrackViewController.swift; sourceTree = "<group>"; };
 		22C027EE2583AAA5005C2209 /* LogIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LogIn.swift; path = "Music Room 3/Controller/LogIn.swift"; sourceTree = SOURCE_ROOT; };
 		22DBA93625700689007590B4 /* CreateEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CreateEventViewController.swift; path = "Music Room 3/Controller/CreateEventViewController.swift"; sourceTree = SOURCE_ROOT; };
 		22DBA93A25705DAD007590B4 /* JoinAnEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = JoinAnEventViewController.swift; path = "Music Room 3/Controller/JoinAnEventViewController.swift"; sourceTree = SOURCE_ROOT; };
 		22DBA93D25705DFC007590B4 /* MyEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyEventViewController.swift; sourceTree = "<group>"; };
 		22DBA9422570609C007590B4 /* EventCreatedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCreatedViewController.swift; sourceTree = "<group>"; };
+		22FD833C25A890B6003AD292 /* TrackSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackSearchViewController.swift; sourceTree = "<group>"; };
 		2D2F3E6161F090305C9F7364 /* Pods-Music Room 3.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Music Room 3.release.xcconfig"; path = "Target Support Files/Pods-Music Room 3/Pods-Music Room 3.release.xcconfig"; sourceTree = "<group>"; };
 		B4CE09EF852A836BAFFF3E7A /* Pods_Music_Room_3.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Music_Room_3.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FABE2563AB7AC116B29FB354 /* Pods-Music Room 3.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Music Room 3.debug.xcconfig"; path = "Target Support Files/Pods-Music Room 3/Pods-Music Room 3.debug.xcconfig"; sourceTree = "<group>"; };
@@ -76,6 +105,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F4F52AB9B0595F347ACC12FD /* Pods_Music_Room_3.framework in Frameworks */,
+				22B066FE259A12C5006089C7 /* SpotifyiOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,6 +133,8 @@
 		221891F6256BBA1E00948A3A /* Music Room 3 */ = {
 			isa = PBXGroup;
 			children = (
+				22B066FD259A12C5006089C7 /* SpotifyiOS.framework */,
+				22B06703259A14BF006089C7 /* musicroom3-Bridging-Header.h */,
 				221891F7256BBA1E00948A3A /* AppDelegate.swift */,
 				2218920E256BBA5900948A3A /* Controller */,
 				2218920D256BBA5200948A3A /* View */,
@@ -117,6 +149,11 @@
 		2218920C256BBA4D00948A3A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				22B06716259A194A006089C7 /* String.swift */,
+				22B06725259A33DD006089C7 /* ResearchResults.swift */,
+				22B0672C259A3AD9006089C7 /* MakeSearch.swift */,
+				22B0670F259A16BA006089C7 /* SpotifyToken.swift */,
+				2287752E2588D64400ABF9F2 /* PasswordRequest.swift */,
 				22C027EE2583AAA5005C2209 /* LogIn.swift */,
 				22A5D2B5257A4A7500494E56 /* Music Room 3.xcdatamodeld */,
 				22A5D2C1257A4FA300494E56 /* Music.swift */,
@@ -132,6 +169,8 @@
 			isa = PBXGroup;
 			children = (
 				221891FD256BBA1E00948A3A /* Main.storyboard */,
+				22B430E725A489610093E809 /* CustomTableViewCell.swift */,
+				22B430E825A489610093E809 /* CustomTableViewCell.xib */,
 				22189202256BBA1E00948A3A /* LaunchScreen.storyboard */,
 			);
 			path = View;
@@ -140,11 +179,15 @@
 		2218920E256BBA5900948A3A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				22B430EC25A4A4F30093E809 /* ManipulateTrackViewController.swift */,
+				22B0671A259A2669006089C7 /* TestViewController.swift */,
 				224FF9FC256D46510089C8E6 /* WelcolmeViewController.swift */,
 				224FF9E7256D1D9D0089C8E6 /* RegistrationViewController.swift */,
 				224FF9EB256D1E1E0089C8E6 /* ValidatedRegistrationViewController.swift */,
+				22877555258A229700ABF9F2 /* GoogleSubscriptionViewController.swift */,
 				224FF9EF256D1E4A0089C8E6 /* ConnectionViewController.swift */,
 				225E91FD256D566900040214 /* PlaylistEditorViewController.swift */,
+				22FD833C25A890B6003AD292 /* TrackSearchViewController.swift */,
 				225E9201256D568000040214 /* ControlDelegationViewController.swift */,
 				225E9208256D56A400040214 /* ProfileViewController.swift */,
 				225E9204256D569600040214 /* TrackVoteViewController.swift */,
@@ -154,6 +197,8 @@
 				22DBA93D25705DFC007590B4 /* MyEventViewController.swift */,
 				221891FB256BBA1E00948A3A /* ViewController.swift */,
 				224FF9F3256D1E650089C8E6 /* HomeViewController.swift */,
+				2287752A2588D27300ABF9F2 /* GetPasswordViewController.swift */,
+				22877559258A46D700ABF9F2 /* MailRegistrationViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -237,6 +282,7 @@
 			files = (
 				22189204256BBA1E00948A3A /* LaunchScreen.storyboard in Resources */,
 				22189201256BBA1E00948A3A /* Assets.xcassets in Resources */,
+				22B430EA25A489610093E809 /* CustomTableViewCell.xib in Resources */,
 				221891FF256BBA1E00948A3A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -310,20 +356,32 @@
 				225E9202256D568000040214 /* ControlDelegationViewController.swift in Sources */,
 				224FF9EC256D1E1E0089C8E6 /* ValidatedRegistrationViewController.swift in Sources */,
 				22DBA93725700689007590B4 /* CreateEventViewController.swift in Sources */,
+				22B06726259A33DD006089C7 /* ResearchResults.swift in Sources */,
+				2287755A258A46D700ABF9F2 /* MailRegistrationViewController.swift in Sources */,
 				225E9205256D569600040214 /* TrackVoteViewController.swift in Sources */,
+				2287752B2588D27300ABF9F2 /* GetPasswordViewController.swift in Sources */,
 				22A5D2BF257A4F5700494E56 /* Event.swift in Sources */,
+				2287752F2588D64400ABF9F2 /* PasswordRequest.swift in Sources */,
+				22B0672D259A3AD9006089C7 /* MakeSearch.swift in Sources */,
 				22A5D2B7257A4A7500494E56 /* Music Room 3.xcdatamodeld in Sources */,
 				22DBA93E25705DFC007590B4 /* MyEventViewController.swift in Sources */,
+				22B430ED25A4A4F30093E809 /* ManipulateTrackViewController.swift in Sources */,
+				22B0671B259A2669006089C7 /* TestViewController.swift in Sources */,
 				225E91FE256D566900040214 /* PlaylistEditorViewController.swift in Sources */,
+				22B06717259A194A006089C7 /* String.swift in Sources */,
 				22A5D2BA257A4EF100494E56 /* User.swift in Sources */,
 				224FF9F0256D1E4A0089C8E6 /* ConnectionViewController.swift in Sources */,
 				221A5E14257E4024004E6616 /* CreateUser.swift in Sources */,
 				224FF9E8256D1D9D0089C8E6 /* RegistrationViewController.swift in Sources */,
+				22877556258A229700ABF9F2 /* GoogleSubscriptionViewController.swift in Sources */,
+				22B06710259A16BA006089C7 /* SpotifyToken.swift in Sources */,
 				22A5D2C2257A4FA300494E56 /* Music.swift in Sources */,
 				22C027EF2583AAA5005C2209 /* LogIn.swift in Sources */,
 				224FF9F4256D1E650089C8E6 /* HomeViewController.swift in Sources */,
+				22B430E925A489610093E809 /* CustomTableViewCell.swift in Sources */,
 				22189215256BBE3C00948A3A /* RoundButton.swift in Sources */,
 				22DBA93B25705DAD007590B4 /* JoinAnEventViewController.swift in Sources */,
+				22FD833D25A890B6003AD292 /* TrackSearchViewController.swift in Sources */,
 				221891FC256BBA1E00948A3A /* ViewController.swift in Sources */,
 				221891F8256BBA1E00948A3A /* AppDelegate.swift in Sources */,
 				225E9209256D56A400040214 /* ProfileViewController.swift in Sources */,
@@ -410,8 +468,10 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/marie-lise/Documents/Music Room 3/Music Room 3/Music Room 3/musicroom3-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -464,8 +524,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/marie-lise/Documents/Music Room 3/Music Room 3/Music Room 3/musicroom3-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -479,13 +541,19 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2WAAA3TQ2K;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Music\\ Room\\ 3",
+				);
 				INFOPLIST_FILE = "Music Room 3/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "MarieLisePicard.Music-Room-3";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/marie-lise/Documents/Music Room 3/Music Room 3/Music Room 3/musicroom3-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -499,13 +567,19 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2WAAA3TQ2K;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Music\\ Room\\ 3",
+				);
 				INFOPLIST_FILE = "Music Room 3/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "MarieLisePicard.Music-Room-3";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/marie-lise/Documents/Music Room 3/Music Room 3/Music Room 3/musicroom3-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
