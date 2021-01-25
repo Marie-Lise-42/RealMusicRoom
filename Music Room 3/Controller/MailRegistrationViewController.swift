@@ -46,7 +46,7 @@ class MailRegistrationViewController: UIViewController {
         } else {
             CreateUser.shared.createNewUser(email: mail, password: password, firstName: firstName, lastName: lastName, pseudo: pseudo) { (success) in
                 print(success)
-                if success {
+                if success == 1 {
                     self.mailField.isHidden = true
                     self.passwordField.isHidden = true
                     self.firstNameField.isHidden = true

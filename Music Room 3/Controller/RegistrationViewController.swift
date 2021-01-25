@@ -10,13 +10,17 @@ import GoogleSignIn
 import FBSDKLoginKit
 import FBSDKCoreKit
 
-class RegistrationViewController: UIViewController {
+/*
+        This Controller manage User's subscription !
+ */
 
+class RegistrationViewController: UIViewController {
+    
     override func viewDidLoad() {
-        
+        print("REGISTRATION VIEW CONTROLLER VIEW DID LOAD")
         super.viewDidLoad()
-            
-        // fb
+        
+        // Facebook => Why is this here ?
         if let token = AccessToken.current, !token.isExpired {
             print("on a un token facebook")
             updateButton(isLoggedIn: true)
@@ -38,7 +42,7 @@ class RegistrationViewController: UIViewController {
         self.passwordField.isHidden = false
         self.subscribeButton.isHidden = false
  
-        // Register notification to update screen after user successfully signed in
+        // Register notification to update screen after user successfully signed in Google
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(userDidSignInGoogle(_:)),
                                                name: .signInGoogleCompleted,
@@ -50,26 +54,23 @@ class RegistrationViewController: UIViewController {
   
     @IBAction func logoutButton(_ sender: Any) {
         print("Entrée Logout Button")
-        
-        
         // pour déco un user google
          UserDefaults.standard.set(false, forKey: "logued")
          if let _ = GIDSignIn.sharedInstance()?.currentUser {
              print("ON VA DECONNECTER UN USER GOOGLE")
              GIDSignIn.sharedInstance()?.signOut()
              print("OK C'EST FAIT")
-
          }
-         
-        
         let loginManager = LoginManager()
         if AccessToken.current != nil {
             print(AccessToken.current!)
         }
         //updateScreen()
-        
+
         loginManager.logOut()
 
+        // Profile => Represents a Facebook Profile 
+        
         //supprimé momentanément
         Profile.loadCurrentProfile { (profile, error) in
             let testName = Profile.current?.name
@@ -120,6 +121,7 @@ class RegistrationViewController: UIViewController {
         let mail = mailField.text!
         let password = passwordField.text!
         let validMail = isValidEmailAddress(emailAddressString: mail)
+        print("validmail : ", validMail)
         
         if firstName == "" || lastName == "" || pseudo == "" || password == "" {
             self.presentAlertEmptyField()
@@ -132,7 +134,7 @@ class RegistrationViewController: UIViewController {
         } else {
             CreateUser.shared.createNewUser(email: mail, password: password, firstName: firstName, lastName: lastName, pseudo: pseudo) { (success) in
                 print(success)
-                if success {
+                if success == 1 {
                     self.activityIndicator.isHidden = true
                     self.welcolmeText.isHidden = true
                     self.validateText.isHidden = false
@@ -147,20 +149,40 @@ class RegistrationViewController: UIViewController {
                     self.mailField.isHidden = true
                     self.passwordField.isHidden = true
                     self.subscribeButton.isHidden = true
+                } else if success == 0 {
+                    self.presentAlertInternError()
+                    self.mailField.isHidden = false
+                    self.passwordField.isHidden = false
+                    self.firstNameField.isHidden = false
+                    self.lastNameField.isHidden = false
+                    self.pseudoField.isHidden = false
+                    self.subscribeButton.isHidden = false
+                    self.validateText.isHidden = true
+                    self.activityIndicator.isHidden = true
+                    
                 } else {
-                    self.presentAlert()
+                    self.presentAlertAccountAlreadyInDB()
+                    self.mailField.isHidden = false
+                    self.passwordField.isHidden = false
+                    self.firstNameField.isHidden = false
+                    self.lastNameField.isHidden = false
+                    self.pseudoField.isHidden = false
+                    self.subscribeButton.isHidden = false
+                    self.validateText.isHidden = true
+                    self.activityIndicator.isHidden = true
+                    
                 }
             }
         }
-        
-        
     }
     
     /*
      Google Subscription
      */
     @IBAction func GoogleSignInButton(_ sender: UIButton) {
+        print("GOOGLE SIGN IN BUTTON TAPPED")
         GIDSignIn.sharedInstance()?.signIn()
+        print("We just tried to sign in")
     }
     
     private func updateScreenGoogleSuccess() {
@@ -189,7 +211,6 @@ class RegistrationViewController: UIViewController {
     
     private func updateScreen() {
         print("Entrée Fonction UpdateScreen")
-
         print(AccessToken.current ?? "")
         if AccessToken.current == nil {
             print("We don't have token !")
@@ -228,6 +249,7 @@ class RegistrationViewController: UIViewController {
             mailField.isHidden = true
             passwordField.isHidden = true
             subscribeButton.isHidden = true
+            
             self.navigationController?.isNavigationBarHidden = true
 
         } else {
@@ -257,26 +279,34 @@ class RegistrationViewController: UIViewController {
                 UserDefaults.standard.setValue(true, forKey: "logued")
                 self.updateScreenGoogleSuccess()
             } else if success == 2 {
-                // Internal Error - Couldn't add Google User in DB
-                self.presentAlertInternError()
-                self.updateScreenGoogleFailure()
+                // Google User Added in DB But a mail has been sent !
+                self.presentAlertEmailSend()
+                if ((GIDSignIn.sharedInstance()?.currentUser) != nil) {
+                    GIDSignIn.sharedInstance()?.signOut()
+                }
+
             } else if success == 3 {
                 // Error : Email already assigned to a User
-                self.updateScreen() // TEST
+                //self.updateScreen() // TEST
                 self.presentAlertAccountAlreadyInDB()
-            } else if success == 4 {
-                // Account Created and Email Send !
-                self.presentAlertEmailSend()
-            }
-            else {
+                if ((GIDSignIn.sharedInstance()?.currentUser) != nil) {
+                    print("L'user Existe déjà !! on va le logout")
+                    GIDSignIn.sharedInstance()?.signOut()
+                }
+            } else {
                 // Internal Error
                 self.presentAlertInternError()
+                if ((GIDSignIn.sharedInstance()?.currentUser) != nil) {
+                    GIDSignIn.sharedInstance()?.signOut()
+                }
+
             }
         }
     }
     
     // MARK:- Notification
     @objc private func userDidSignInGoogle(_ notification: Notification) {
+        print("NOTIFICATION: USER DID SIGN IN GOOGLE")
         addUserToDb()
         //updateScreen()
     }
@@ -311,8 +341,9 @@ extension RegistrationViewController {
     // Extension for Facebook features
 
     @IBAction func facebookButton(_ sender: Any) {
-        print("Fb Button")
-            
+        
+        print("The User Tapped on the Facebook Button")
+
         let loginManager = LoginManager()
         if let _ = AccessToken.current {
             print("On a un current Token ! ")
@@ -320,7 +351,6 @@ extension RegistrationViewController {
             self.updateButton(isLoggedIn: false)
         } else {
             print("On N'A PAS DE current Token ! ")
-
             loginManager.logIn(permissions: ["public_profile", "email"], from: self) { [weak self] (result, error) in
                 guard error == nil else {
                     print(error!.localizedDescription)
@@ -330,7 +360,14 @@ extension RegistrationViewController {
                     print("User cancelled login")
                     return
                 }
-                self?.updateButton(isLoggedIn: true)
+                self?.mailField.isHidden = false
+                self?.passwordField.isHidden = false
+                self?.firstNameField.isHidden = false
+                self?.lastNameField.isHidden = false
+                self?.pseudoField.isHidden = false
+                self?.subscribeButton.isHidden = false
+                self?.validateText.isHidden = true
+                self?.activityIndicator.isHidden = true
                 Profile.loadCurrentProfile { (profile, error) in
                     //self?.updateMessage(with: Profile.current?.name)
                 }
@@ -341,8 +378,77 @@ extension RegistrationViewController {
                     print("for facebook, we have a token : ")
                     self?.getMail(token: token!.tokenString)
                     print("token : ", token?.tokenString ?? "")
-                    UserDefaults.standard.setValue(token, forKey: "FbToken")
-                    CreateUser.shared.createNewFacebookUser(callback: <#T##(Bool) -> Void#>)
+                    let token2 = token?.tokenString ?? ""
+                    UserDefaults.standard.setValue(token2, forKey: "FbToken")
+                    
+                    CreateUser.shared.createNewFacebookUser() { (success) in
+                        if success == 1 {
+                            
+                            print("USER AJOUTÉ a la database ")
+                            
+                            print("SUCCESS ADD FB USER IN DATA")
+                            self?.updateButton(isLoggedIn: true)
+
+                            UserDefaults.standard.setValue(true, forKey: "FacebookLoggued")
+                            UserDefaults.standard.setValue(true, forKey: "logued")
+                            self?.updateScreenGoogleSuccess()
+
+                            // UPDATE LES SUBVIEWS
+                        } else if success == 0 {
+                            print("on ajoute pas l'user à la database")
+                            print("FAILURE ADD FB USER IN DATA")
+                            self?.navigationController?.isNavigationBarHidden = false
+
+                            self?.mailField.isHidden = false
+                            self?.passwordField.isHidden = false
+                            self?.firstNameField.isHidden = false
+                            self?.lastNameField.isHidden = false
+                            self?.pseudoField.isHidden = false
+                            self?.subscribeButton.isHidden = false
+                            self?.validateText.isHidden = true
+                            self?.activityIndicator.isHidden = true
+                            self?.startMusicRoom.isHidden = true
+                            self?.facebookButtonOutlet.isHidden = false
+                            self?.googleButton.isHidden = false
+                            self?.welcolmeText.isHidden = false
+                            self?.ouLabel.isHidden = false
+                            let loginManager = LoginManager()
+                            loginManager.logOut()
+                            self!.presentAlertInternError()
+                            UserDefaults.standard.setValue(false, forKey: "FacebookLoggued")
+                            UserDefaults.standard.setValue(false, forKey: "logued")
+                            // NE PAS ETRE LOG APRES
+                        } else if success == 2 {
+                            print("on ajoute pas l'user à la database")
+                            self?.navigationController?.isNavigationBarHidden = false
+
+                            self?.mailField.isHidden = false
+                            self?.passwordField.isHidden = false
+                            self?.firstNameField.isHidden = false
+                            self?.lastNameField.isHidden = false
+                            self?.pseudoField.isHidden = false
+                            self?.subscribeButton.isHidden = false
+                            self?.validateText.isHidden = true
+                            self?.activityIndicator.isHidden = true
+                            self?.startMusicRoom.isHidden = true
+
+                            self?.facebookButtonOutlet.isHidden = false
+                            self?.googleButton.isHidden = false
+                            self?.welcolmeText.isHidden = false
+                            self?.ouLabel.isHidden = false
+                            UserDefaults.standard.setValue(false, forKey: "FacebookLoggued")
+                            UserDefaults.standard.setValue(false, forKey: "logued")
+                          
+                            
+                            let loginManager = LoginManager()
+                            loginManager.logOut()
+                            
+                            self!.presentAlertAccountAlreadyInDB()
+                            // NE PAS ETRE LOG APRES
+                        }
+                    }
+                  
+                    
                 }
                 
                 self?.updateScreenAfterFBLog()
@@ -359,12 +465,12 @@ extension RegistrationViewController {
         })
     }
     
-    private func updateButton(isLoggedIn: Bool) {
+    func updateButton(isLoggedIn: Bool) {
         let title = isLoggedIn ? "Log out " : "Facebook "
         facebookButtonOutlet.setTitle(title, for: .normal)
     }
     
-    private func updateScreenAfterFBLog() {
+    func updateScreenAfterFBLog() {
         welcolmeText.isHidden = true
         validateText.isHidden = false
         validateText.text = " Ton inscription a bien été prise en compte. "
@@ -423,6 +529,4 @@ extension RegistrationViewController {
         alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
         present(alertVC, animated: true, completion: nil)
     }
-    
-    
 }

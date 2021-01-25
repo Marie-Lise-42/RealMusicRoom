@@ -13,17 +13,28 @@ import FBSDKCoreKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 
-
+    // SPOTIFY
+    //var window: UIWindow?
+    //lazy var rootViewController = TestViewController()//PlayerViewController()
     
+    // SPOTIFY TEST
     
-    
-    
-   
+    /*func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+      if let openURLContext = URLContexts.first {
+        ApplicationDelegate.shared.application(UIApplication.shared, open:
+        openURLContext.url, sourceApplication:
+        openURLContext.options.sourceApplication, annotation:
+        openURLContext.options.annotation)
+      }
+    }*/
  
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
-        
-        
+        // SPOTIFY
+        //print("print window")
+        //window = UIWindow(frame: UIScreen.main.bounds)
+        //window?.rootViewController = rootViewController
+        //window?.makeKeyAndVisible()
+         
         SpotifyToken.shared.getSpotifyToken()
         
         GIDSignIn.sharedInstance().clientID = "442900747056-7jahnmert3dmlk3mvuepi4sllb1dm6a4.apps.googleusercontent.com"
@@ -31,8 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         GIDSignIn.sharedInstance()?.restorePreviousSignIn()
         
         ApplicationDelegate.shared.application( application, didFinishLaunchingWithOptions: launchOptions )
-        
-       
+
         return true
     }
     
@@ -40,7 +50,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                      open url: URL,
                      options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
         
-       
+        // SPOTIFY TEST
+        //rootViewController.sessionManager.application(app, open: url, options: options)
+        //print("root view controller session manager application")
+
 
 
         let google = GIDSignIn.sharedInstance()?.handle(url) ?? false
@@ -48,8 +61,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         let facebook = ApplicationDelegate.shared.application( app, open: url, sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String, annotation: options[UIApplication.OpenURLOptionsKey.annotation] )
     
         return google || facebook
+        //return true
     }
 
+    //SPOTIFY TEST
+   /* func applicationWillResignActive(_ application: UIApplication) {
+        //if (rootViewController.appRemote.isConnected) {
+        //    rootViewController.appRemote.disconnect()
+        //}
+    }
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        //print("application Did Become active (App Delegate)")
+        //if let _ = rootViewController.appRemote.connectionParameters.accessToken {
+        //    rootViewController.appRemote.connect()
+        //}
+    }*/
+    
     // MARK: UISceneSession Lifecycle
 
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
@@ -88,7 +115,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             // Check for sign in error
             if let error = error {
                 if (error as NSError).code == GIDSignInErrorCode.hasNoAuthInKeychain.rawValue {
-                    print("The user has not signed in before or they have since signed out.")
+                    //print("Google : The user has not signed in before or they have since signed out.")
                 } else {
                     print("\(error.localizedDescription)")
                 }
@@ -109,7 +136,7 @@ extension Notification.Name {
 
     // Notification when user successfully sign in using Google
     static var signInGoogleCompleted: Notification.Name {
-        print("I Guess We Send a Notif HERE ? ")
+        //print("Notification si l'user a successfully sign in using Google")
         return .init(rawValue: #function)
     }
 }

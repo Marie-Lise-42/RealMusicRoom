@@ -19,80 +19,51 @@ class CreateUser {
     private var task: URLSessionTask?
     
     func addGoogleUser(callback: @escaping (Int/*Bool*/) -> Void) {
-        print("Entrée Fonction ADD GOOGLE USER")
-        
         let token: String = UserDefaults.standard.value(forKey: "idToken") as! String
-        print("TOKEN WE HAVE : ", token)
         let clientId = "442900747056-7jahnmert3dmlk3mvuepi4sllb1dm6a4.apps.googleusercontent.com"
         var request = URLRequest(url: urlG)
         request.httpMethod = "POST"
         let body = "token=" + token + "&MusicRoom_ID=" + clientId
-        print("Body for the request : ", body)
         request.httpBody = body.data(using: .utf8)
         let session = URLSession(configuration: .default)
         task?.cancel()
         task = session.dataTask(with: request) { (data, response, error) in
             DispatchQueue.main.async {
                 guard let data = data, error == nil else {
-                    print("on a une erreur ici ligne 34")
-                    callback(2)
+                    callback(2) /* An Error occured */
                     return
                 }
                 if let responseJSON = try? JSONDecoder().decode([String: String].self, from: data) {
                     if let response = response as? HTTPURLResponse {
+                        /*print("Requête Créer user Google : status code = ", response.statusCode, " code : ",  responseJSON["code"]!)*/
                         if response.statusCode == 400 {
-                            print("on a une réponse 400")
                             if responseJSON["code"] == "0" {
-                                print("code 0")
-
-                                callback(3)
+                                callback(3) /* An Account already exists with this Mail Adress */
                                 return
-                            } else if responseJSON["code"] == "1" {
+                            } else {
                                 print("code 1")
-                                callback(2)
-                                return
-                            } else if responseJSON["code"] == "2" {
-                                print("code 2")
-                                callback(2)
+                                callback(0) /* Intern Error */
                                 return
                             }
-                            callback(2)
-                            return
-                            // if responseJSON["code"] == "1" {
                         } else if response.statusCode == 201 {
                             print("On a une réponse 201")
                             if responseJSON["code"] == "0" {
-                                callback(4)
+                                // User Created + Mail Sent
+                                callback(2)
                                 return
                             } else if responseJSON["code"] == "1" {
+                                // User Created Without Mail
                                 callback(1)
                                 return
                             }
                         } else if response.statusCode == 500 {
-                            print("on a une réponse 500")
-                            callback(2)
+                            // Internal Error
+                            callback(0)
                             return
                         }
                     }
-                    print("aucun de ces cas")
-                    callback(2)
+                    callback(0)
                     return
-                    
-                    
-                    /*if responseJSON["code"] == "400" {
-                        print("ICI 1")
-                        callback(false)
-                        return
-                    }
-                    else if responseJSON["code"] == "0" {
-                        callback(true)
-                        return
-                    }
-                    else {
-                        print("ICI 2")
-                        callback(false)
-                        return
-                    }*/
                 }
             }
         }
@@ -101,7 +72,7 @@ class CreateUser {
                 
     }
     
-    func createNewUser(email: String, password: String, firstName: String, lastName: String, pseudo: String, callback: @escaping (Bool) -> Void) {
+    func createNewUser(email: String, password: String, firstName: String, lastName: String, pseudo: String, callback: @escaping (Int) -> Void) {
         
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
@@ -115,24 +86,29 @@ class CreateUser {
         task = session.dataTask(with: request) { (data, response, error) in
             DispatchQueue.main.async {
                 guard let data = data, error == nil else {
-                    callback(false)
+                    callback(0)
                     return
                 }
                 if let responseJSON = try? JSONDecoder().decode([String: String].self, from: data) {
-                    print(responseJSON)
-                    if responseJSON["code"] == "1" {
-                        // email déjà associé à un compte
-                        callback(false)
-                        return
-                    }
-                    else if responseJSON["code"] == "0" {
-                        // success - user created
-                        callback(true)
-                        return
-                    }
-                    else {
-                        callback(false)
-                        return
+                    if let response = response as? HTTPURLResponse {
+                        if response.statusCode == 201 {
+                            callback(1)
+                            return
+                        } else if response.statusCode == 400 {
+                            if responseJSON["code"] == "0" {
+                                // The email is already used for a user
+                                callback(2)
+                                return
+                            } else {
+                                // intern error
+                                callback(0)
+                                return
+                            }
+                        } else {
+                            // intern error
+                            callback(0)
+                            return
+                        }
                     }
                 }
             }
@@ -140,11 +116,12 @@ class CreateUser {
         task?.resume()
     }
 
-    func createNewFacebookUser(callback: @escaping (Bool) -> Void) {
+    func createNewFacebookUser(callback: @escaping (Int) -> Void) {
         var request = URLRequest(url: FbUrl)
         request.httpMethod = "POST"
         
-        let token = ""
+        let token = UserDefaults.standard.string(forKey: "FbToken")!
+
         let body = "token=" + token
         request.httpBody = body.data(using: .utf8)
         let session = URLSession(configuration: .default)
@@ -153,12 +130,32 @@ class CreateUser {
         task = session.dataTask(with: request) { (data, response, error) in
             DispatchQueue.main.async {
                 guard let data = data, error == nil else {
-                    callback(false)
+                    callback(0)
                     return
                 }
                 if let responseJSON = try? JSONDecoder().decode([String: String].self, from: data) {
+                    if let response = response as? HTTPURLResponse {
+                        if response.statusCode == 201 {
+                            callback(1)
+                            return
+                        } else if response.statusCode == 400 {
+                            if responseJSON["code"] == "0" {
+                                callback(2)
+                                return
+                            } else if responseJSON["code"] == "1" {
+                                callback(0)
+                                return
+                            } else if responseJSON["code"] == "2" {
+                                callback(0)
+                                return
+                            }
+                        } else {
+                            callback(0)
+                            return
+                        }
+                    }
                     print(responseJSON)
-                    callback(true)
+                    callback(1)
                     return
                 }
             }

@@ -7,17 +7,19 @@
 
 import UIKit
 import GoogleSignIn
+import FBSDKLoginKit
+import FBSDKCoreKit
 
 class ConnectionViewController: UIViewController {
 
     override func viewDidLoad() {
+        print("Connection View Did Load")
         super.viewDidLoad()
         
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(userDidSignInGoogle(_:)),
                                                name: .signInGoogleCompleted,
                                                object: nil)
-        print("fin notif dans view did load ")
         
         self.navigationController?.isNavigationBarHidden = false
         GIDSignIn.sharedInstance()?.presentingViewController = self
@@ -29,33 +31,77 @@ class ConnectionViewController: UIViewController {
     }
     
     
+    /*
+     
+                FACEBOOK CONNEXION
+     
+     */
+    
+    @IBAction func facebookConnect(_ sender: Any) {
+        print("On vient de taper sur le bouton de connexion à FaceBook")
+        
+        let loginManager = LoginManager()
+        loginManager.logIn(permissions: ["public_profile", "email"], from: self) { [weak self] (result, error) in
+            guard error == nil else {
+                print(error!.localizedDescription)
+                return
+            }
+            guard let result = result, !result.isCancelled else {
+                print("User cancelled login")
+                return
+            }
+            Profile.loadCurrentProfile { (profile, error) in
+                print("on load le profil : ", Profile.current?.name ?? "")
+                //self?.updateMessage(with: Profile.current?.name)
+            }
+            if AccessToken.current == nil {
+                print("token is nil")
+            } else {
+                let token = AccessToken.current
+                print("for facebook, we have a token : ")
+                self?.getMail(token: token!.tokenString)
+                print(token!.tokenString)
+                let token2 = token?.tokenString ?? ""
+                UserDefaults.standard.setValue(token2, forKey: "FacebookToken")
+                UserDefaults.standard.setValue(token2, forKey: "FbToken")
+                LogIn.shared.getFacebookLog() { (success) in
+                    if success == 1 {
+                        UserDefaults.standard.set(true, forKey: "FacebookLoggued")
+                        UserDefaults.standard.set(true, forKey: "logued")
+                        
+                        // ce segue fait buguer l'app sur device ? 
+                        self?.performSegue(withIdentifier: "validateLogIn", sender: self)
+                    } else {
+                        self?.presentAlertInternalError()
+                    }
+                }
+            }
+        }
+    }
+        
+    func getMail(token: String) {
+        let request = FBSDKLoginKit.GraphRequest(graphPath: "me", parameters:  ["fields": "email, name"], tokenString: token, version: nil, httpMethod: .get)
+        request.start(completionHandler: { connection, result, error in
+        print("\(result ?? "")")
+        })
+    }
+        
     @IBAction func googleConnect(_ sender: Any) {
         GIDSignIn.sharedInstance()?.signIn()
         // cacher le bouton
-        
-        
-        /*LogIn.shared.getGoogleLog() { (success) in
-            print(success)
-            if success {
-                UserDefaults.standard.set(true, forKey: "logued")
-                if let _ = GIDSignIn.sharedInstance()?.currentUser {
-                    print("il y a bin un current user !!!!")
-                    self.performSegue(withIdentifier: "validateLogIn", sender: self)
-                }
-            } else {
-                self.presentAlert()
-                self.activityIndicator.isHidden = true
-            }
-        }*/
     }
     
     @objc private func userDidSignInGoogle(_ notification: Notification) {
+                
         LogIn.shared.getGoogleLog() { (success) in
             print(success)
             
             if success == 1 {
                 UserDefaults.standard.set(true, forKey: "logued")
+                UserDefaults.standard.set(true, forKey: "Googlelogued")
+                //print("on a bien loggué l'user google ICI")
                 if let _ = GIDSignIn.sharedInstance()?.currentUser {
+                    //print("ON A UN CURRENT USER ???")
                     self.performSegue(withIdentifier: "validateLogIn", sender: self)
                 }
             } else if success == 0 {
@@ -67,14 +113,8 @@ class ConnectionViewController: UIViewController {
             } else if success == 3 {
                 self.presentAlertInvalidMail()
                 self.activityIndicator.isHidden = true
-
             }
-            
-           
         }
-        
-        //ddUserToDb()
-        //updateScreen()
     }
     
     @IBOutlet weak var mailField: UITextField!
@@ -122,7 +162,7 @@ class ConnectionViewController: UIViewController {
                 print(success)
                 if success == 1 {
                     UserDefaults.standard.set(true, forKey: "logued")
-                    print("le user vient de se logguer")
+                    UserDefaults.standard.set(true, forKey: "MailLogued")
                     self.performSegue(withIdentifier: "validateLogIn", sender: self)
                 } else {
                     if success == -1 {
@@ -145,6 +185,7 @@ class ConnectionViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "validateLogIn" {
             let _ = segue.destination as! UITabBarController
+            //let _ = segue.destination as! ProfileViewController
         }
     }
     
@@ -183,6 +224,4 @@ class ConnectionViewController: UIViewController {
         alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
         present(alertVC, animated: true, completion: nil)
     }
-    
-
 }

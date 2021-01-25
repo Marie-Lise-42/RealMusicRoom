@@ -1,80 +1,14 @@
 //
-//  WelcolmeViewController.swift
+//  PlayerViewController.swift
 //  Music Room 3
 //
-//  Created by ML on 24/11/2020.
+//  Created by ML on 15/01/2021.
 //
 
 import UIKit
-import GoogleSignIn
-import FBSDKLoginKit
-import FBSDKCoreKit
 
-class WelcolmeViewController: UIViewController {
+class PlayerViewController: UIViewController, SPTSessionManagerDelegate, SPTAppRemoteDelegate, SPTAppRemotePlayerStateDelegate {
     
-    // TEST SPOTIFY
-//    var alwaysOnView: TestViewController!
-    @IBOutlet var TestViewController: TestViewController!
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
-        let loggued: Bool = UserDefaults.standard.bool(forKey: "logued")
-        
-        // Let's say no user is connected right now
-        //loggued = false
-        if loggued == true {
-            performSegue(withIdentifier: "logSegue1", sender: self)
-        }
-    }
-
-    override func viewDidLoad() {
-        
-        super.viewDidLoad()
-        
-        UserDefaults.standard.setValue(false, forKey: "FacebookLoggued")
-        UserDefaults.standard.setValue(false, forKey: "logued")
-        UserDefaults.standard.setValue(false, forKey: "Googlelogued")
-        UserDefaults.standard.setValue(false, forKey: "MailLogued")
-    
-        // Check if there if a Facebook User has previously loggued in !
-        if let token = AccessToken.current, !token.isExpired {
-            // Surement pas la bonne manière 
-            print("on a un token facebook")
-            UserDefaults.standard.setValue(true, forKey: "FacebookLoggued")
-            UserDefaults.standard.setValue(true, forKey: "logued")
-        }
-        
-        // Check if there if a Google User has previously loggued in !
-        if let _ = GIDSignIn.sharedInstance()?.currentUser {
-            UserDefaults.standard.setValue(true, forKey: "Googlelogued")
-            UserDefaults.standard.setValue(true, forKey: "logued")
-        }
-        
-        var loggued: Bool = UserDefaults.standard.bool(forKey: "logued")
-      
-        // Let's say no user is connected right now
-        loggued = false
-        
-        if loggued == true {
-            //print("Logued = ", loggued)
-            performSegue(withIdentifier: "logSegue1", sender: self)
-        }
-    }
-    
-    @IBAction func existingAccount(_ sender: Any) {
-        performSegue(withIdentifier: "logSegue1", sender: self)
-    }
-    
-    @IBAction func unwindToLogPage(segue:UIStoryboardSegue) { }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "logSegue1" {
-            _ = segue.destination as! ConnectionViewController
-        }
-    }
-    
-    
-    // SPOTIFY TEST
     private let SpotifyClientID = "39c09e90077544a7a6d71a0fbf058a25"
     private let SpotifyRedirectURI = URL(string: "musicroomsdkspotify://login")!
 
@@ -106,46 +40,23 @@ class WelcolmeViewController: UIViewController {
     private var lastPlayerState: SPTAppRemotePlayerState?
 
 
-    @IBAction func spotifyconnectbutton(_ sender: Any) {
-        let scope: SPTScope = [.appRemoteControl, .playlistReadPrivate]
+    @IBOutlet weak var connectButton: UIButton!
+    @IBOutlet weak var playButton: UIButton!
+    @IBOutlet weak var disconnectButton: UIButton!
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(false)
+    }
+    
+    /*
+     override func viewDidAppear(_ animated: Bool) {
+         super.viewDidAppear(animated)
+     */
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
 
-        if #available(iOS 11, *) {
-            // Use this on iOS 11 and above to take advantage of SFAuthenticationSession
-            sessionManager.initiateSession(with: scope, options: .clientOnly)
-            print("session Manager . initiate Session")
-        } else {
-            // Use this on iOS versions < 11 to use SFSafariViewController
-            sessionManager.initiateSession(with: scope, options: .clientOnly, presenting: self)
-        }
     }
-    
-    @IBAction func pausebutton(_ sender: Any) {
-        appRemote.connect()
-        print("on appuie sur le bouton")
-        print("appRemote.isConnected: ", appRemote.isConnected)
-        if let lastPlayerState = lastPlayerState, lastPlayerState.isPaused {
-            appRemote.playerAPI?.resume(nil)
-        } else {
-            appRemote.playerAPI?.pause(nil)
-        }
-    }
-    
-    @IBAction func deconnectbutton(_ sender: Any) {
-        if (appRemote.isConnected) {
-            appRemote.disconnect()
-        }
-    }
-}
-
-extension WelcolmeViewController: SPTSessionManagerDelegate, SPTAppRemoteDelegate, SPTAppRemotePlayerStateDelegate {
-    // SPOTIFY TEST
-    
-    
-    
-    
-    
-  
-    
     
     func update(playerState: SPTAppRemotePlayerState) {
         if lastPlayerState?.track.uri != playerState.track.uri {
@@ -178,6 +89,44 @@ extension WelcolmeViewController: SPTSessionManagerDelegate, SPTAppRemoteDelegat
             }
         })
     }
+
+    
+    
+    @IBAction func connectAction(_ sender: Any) {
+        let scope: SPTScope = [.appRemoteControl, .playlistReadPrivate]
+
+        if #available(iOS 11, *) {
+            // Use this on iOS 11 and above to take advantage of SFAuthenticationSession
+            sessionManager.initiateSession(with: scope, options: .clientOnly)
+            print("session Manager . initiate Session")
+        } else {
+            // Use this on iOS versions < 11 to use SFSafariViewController
+            sessionManager.initiateSession(with: scope, options: .clientOnly, presenting: self)
+        }
+    }
+    
+    @IBAction func playAction(_ sender: Any) {
+        appRemote.connect()
+        print("on appuie sur le bouton")
+        print("appRemote.isConnected: ", appRemote.isConnected)
+        if let lastPlayerState = lastPlayerState, lastPlayerState.isPaused {
+            appRemote.playerAPI?.resume(nil)
+        } else {
+            appRemote.playerAPI?.pause(nil)
+        }
+    }
+    
+    @IBAction func disconnectAction(_ sender: Any) {
+        if (appRemote.isConnected) {
+            appRemote.disconnect()
+        }
+    }
+    
+    
+    
+    /*
+                Protocols
+     */
     
     // MARK: - SPTSessionManagerDelegate
 
@@ -194,10 +143,7 @@ extension WelcolmeViewController: SPTSessionManagerDelegate, SPTAppRemoteDelegat
     func sessionManager(manager: SPTSessionManager, didInitiate session: SPTSession) {
         print("did initiate session")
         appRemote.connectionParameters.accessToken = session.accessToken
-        print("access token : ", appRemote.connectionParameters.accessToken)
         appRemote.connect()
-        print("appRemote.isConnected: ", appRemote.isConnected)
-        
     }
 
     // MARK: - SPTAppRemoteDelegate
@@ -236,5 +182,5 @@ extension WelcolmeViewController: SPTSessionManagerDelegate, SPTAppRemoteDelegat
             self.present(controller, animated: true)
         }
     }
+    
 }
-

@@ -23,16 +23,6 @@
 		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
-			<key>CFBundleURLName</key>
-			<string>MarieLisePicard.Music-Room-3</string>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>musicroom3</string>
-			</array>
-		</dict>
-		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>com.googleusercontent.apps.442900747056-7jahnmert3dmlk3mvuepi4sllb1dm6a4</string>
@@ -50,10 +40,10 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>MarieLisePicard.Music-Room-3</string>
+			<string>MarieLisePicard.Music-Room-31</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>musicroom</string>
+				<string>musicroomsdkspotify</string>
 			</array>
 		</dict>
 	</array>

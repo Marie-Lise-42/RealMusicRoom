@@ -46,9 +46,9 @@ class SpotifyToken {
             DispatchQueue.main.async {
                 let decoder = JSONDecoder()
                 let sToken = try? decoder.decode(SpotifyTokenStruct.self, from: data)
-                print("Our token for Spotify is : ")
+                //print("Our token for Spotify is : ")
                 UserDefaults.standard.setValue(sToken!.access_token, forKey: "SpotifyAppToken")
-                print(UserDefaults.standard.string(forKey: "SpotifyAppToken")!)
+                //print(UserDefaults.standard.string(forKey: "SpotifyAppToken")!)
             }
         }
         task?.resume()

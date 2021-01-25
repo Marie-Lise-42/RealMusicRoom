@@ -10,17 +10,13 @@ import UIKit
 // pour gérer le bouton
 protocol MyCustomCellDelegator {
 
-    func callSegueFromCell(cell: UITableViewCell)//myData dataobject: AnyObject)
-
+    func callSegueFromCell(cell: UITableViewCell)
 }
-
 
 class CustomTableViewCell: UITableViewCell {
     
     // pour gérer le bouton
     var delegate:MyCustomCellDelegator!
-
-
 
     @IBOutlet weak var imageCell: UIImageView!
     @IBOutlet weak var labelCell: UILabel!
@@ -42,7 +38,6 @@ class CustomTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
     
