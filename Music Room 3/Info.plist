@@ -40,7 +40,7 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>MarieLisePicard.Music-Room-31</string>
+			<string>MarieLisePicard.Music-Room-3</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>musicroomsdkspotify</string>

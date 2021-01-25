@@ -29,7 +29,7 @@ class PlaylistEditorViewController: UIViewController, UITableViewDelegate, MyCus
 
         }
         print("fonction call segue from cell is called")
-        self.performSegue(withIdentifier: "TrackSegue2", sender: nil)
+        self.performSegue(withIdentifier: "TrackSegue", sender: nil)
     }
     
 

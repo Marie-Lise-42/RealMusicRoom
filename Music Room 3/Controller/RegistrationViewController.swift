@@ -181,6 +181,9 @@ class RegistrationViewController: UIViewController {
      */
     @IBAction func GoogleSignInButton(_ sender: UIButton) {
         print("GOOGLE SIGN IN BUTTON TAPPED")
+        subscribeButton.isHidden = true
+        activityIndicator.isHidden = false
+        print("les boutons doivent avoir été modifiées ")
         GIDSignIn.sharedInstance()?.signIn()
         print("We just tried to sign in")
     }
@@ -206,6 +209,8 @@ class RegistrationViewController: UIViewController {
     
     private func updateScreenGoogleFailure() {
         print("update screen google failure")
+        activityIndicator.isHidden = true
+        subscribeButton.isHidden = false
         presentAlertAccountAlreadyInDB()
     }
     

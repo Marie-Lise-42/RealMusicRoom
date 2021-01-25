@@ -30,11 +30,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneDidBecomeActive(_ scene: UIScene) {
         // Called when the scene has moved from an inactive state to an active state.
         // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
-        rootViewController = (UIApplication.shared.windows.first!.rootViewController as! UINavigationController)
-        if let _ =
-            rootViewController?.TestViewController.appRemote.connectionParameters.accessToken {
-            rootViewController?.TestViewController.appRemote.connect()
-        }
+//        rootViewController = (UIApplication.shared.windows.first!.rootViewController as! UINavigationController)
+//        if let _ =
+//            rootViewController?.TestViewController.appRemote.connectionParameters.accessToken {
+//            rootViewController?.TestViewController.appRemote.connect()
+//        }
         //spotifyManager.authorize()
     }
 
@@ -42,11 +42,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Called when the scene will move from an active state to an inactive state.
         // This may occur due to temporary interruptions (ex. an incoming phone call).
         
-        rootViewController = (UIApplication.shared.windows.first!.rootViewController as! WelcolmeViewController)
-        
-        if (rootViewController!.TestViewController.appRemote.isConnected) {
-            rootViewController!.TestViewController.appRemote.disconnect()
-        }
+//        rootViewController = (UIApplication.shared.windows.first!.rootViewController as! WelcolmeViewController)
+//
+//        if (rootViewController!.TestViewController.appRemote.isConnected) {
+//            rootViewController!.TestViewController.appRemote.disconnect()
+//        }
         //spotifyManager.deauthorize()
     }
 
@@ -62,9 +62,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        
+        let rootViewController = (UIApplication.shared.windows.first!.rootViewController as! UINavigationController)
+
+        let vc = rootViewController.topViewController?.children[2] as! PlayerViewController
+
         if let url = URLContexts.first?.url {
-            self.rootViewController!.TestViewController.sessionManager.application(UIApplication.shared, open: url, options: [:])
+            vc.sessionManager.application(UIApplication.shared, open: url, options: [:])
         }
+
     }
 }
 

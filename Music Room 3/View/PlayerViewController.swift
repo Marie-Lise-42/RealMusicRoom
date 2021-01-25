@@ -11,18 +11,12 @@ class PlayerViewController: UIViewController, SPTSessionManagerDelegate, SPTAppR
     
     private let SpotifyClientID = "39c09e90077544a7a6d71a0fbf058a25"
     private let SpotifyRedirectURI = URL(string: "musicroomsdkspotify://login")!
-
+    
     lazy var configuration: SPTConfiguration = {
         let configuration = SPTConfiguration(clientID: SpotifyClientID, redirectURL: SpotifyRedirectURI)
-        // Set the playURI to a non-nil value so that Spotify plays music after authenticating and App Remote can connect
-        // otherwise another app switch will be required
         configuration.playURI = ""
-
-        // Set these url's to your backend which contains the secret to exchange for an access token
-        // You can use the provided ruby script spotify_token_swap.rb for testing purposes
         configuration.tokenSwapURL = URL(string: "http://62.34.5.191:45559/spotify/authorization_code/access_token")
         configuration.tokenRefreshURL = URL(string: "http://62.34.5.191:45559/spotify/authorization_code/refresh_token")
-        print("config made")
         return configuration
     }()
 
@@ -38,77 +32,173 @@ class PlayerViewController: UIViewController, SPTSessionManagerDelegate, SPTAppR
     }()
 
     private var lastPlayerState: SPTAppRemotePlayerState?
-
-
-    @IBOutlet weak var connectButton: UIButton!
-    @IBOutlet weak var playButton: UIButton!
-    @IBOutlet weak var disconnectButton: UIButton!
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(false)
+    //MARK: - SPTSessionManagerDelegate
+    
+    func sessionManager(manager: SPTSessionManager, didInitiate session: SPTSession) {
+        appRemote.connectionParameters.accessToken = session.accessToken//
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.appRemote.delegate = self
+            self.appRemote.connect()
+        }
     }
     
-    /*
-     override func viewDidAppear(_ animated: Bool) {
-         super.viewDidAppear(animated)
-     */
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    func sessionManager(manager: SPTSessionManager, didFailWith error: Error) {
+//        presentAlertController(title: "Authorization Failed", message: error.localizedDescription, buttonTitle: "Bummer")
+    }
 
+    func sessionManager(manager: SPTSessionManager, didRenew session: SPTSession) {
+//        presentAlertController(title: "Session Renewed", message: session.description, buttonTitle: "Sweet")
+    }
+    
+    //MARK: - SPTAppRemoteDelegate
+    
+    func appRemote(_ appRemote: SPTAppRemote, didFailConnectionAttemptWithError error: Error?) {
+        updateViewBasedOnConnected()
+        lastPlayerState = nil
+    }
+    
+    func appRemote(_ appRemote: SPTAppRemote, didDisconnectWithError error: Error?) {
+        updateViewBasedOnConnected()
+        lastPlayerState = nil
+    }
+    
+    func appRemoteDidEstablishConnection(_ appRemote: SPTAppRemote) {
+        updateViewBasedOnConnected()
+        appRemote.playerAPI?.delegate = self
+        appRemote.playerAPI?.subscribe(toPlayerState: { (success, error) in
+            if let error = error {
+                print("Error subscribing to player state:" + error.localizedDescription)
+            }
+        })
+        appRemote.playerAPI?.pause({ (status, error) in
+      //      self.fetchPlayerState()
+        })
+    }
+    
+    
+    //MARK: - SPTAppRemotePlayerStateDelegate
+    
+    func playerStateDidChange(_ playerState: SPTAppRemotePlayerState) {
+        update(playerState: playerState)
+    }
+    
+    //MARK: - Spotify functions
+    
+    func updateViewBasedOnConnected() {
+        print("update view based on connected")
+        if (appRemote.isConnected) {
+            /*connectButton.isHidden = true
+            disconnectButton.isHidden = false
+            connectLabel.isHidden = true
+            imageView.isHidden = false
+            trackLabel.isHidden = false
+            pauseAndPlayButton.isHidden = false*/
+        } else {
+            /*disconnectButton.isHidden = true
+            connectButton.isHidden = false
+            connectLabel.isHidden = false
+            imageView.isHidden = true
+            trackLabel.isHidden = true
+            pauseAndPlayButton.isHidden = true*/
+        }
+    }
+    
+    func fetchArtwork(for track:SPTAppRemoteTrack) {
+        appRemote.imageAPI?.fetchImage(forItem: track, with: CGSize.zero, callback: { [weak self] (image, error) in
+            if let error = error {
+                print("Error fetching track image: " + error.localizedDescription)
+            } else if let image = image as? UIImage {
+                //self?.imageView.image = image
+//                self?.imgThumbnail.image = image
+                //self?.currentItem.cover = image
+            }
+        })
     }
     
     func update(playerState: SPTAppRemotePlayerState) {
         if lastPlayerState?.track.uri != playerState.track.uri {
             fetchArtwork(for: playerState.track)
+//            self.lblPlayingArtist.text = playerState.track.artist.name
+//            self.lblPlayingTitle.text = playerState.track.name
         }
         lastPlayerState = playerState
         if playerState.isPaused {
-            //pauseAndPlayButton.setImage(UIImage(named: "play"), for: .normal)
+//            self.btnPlayPause.setImage(UIImage(systemName: "play.fill"), for: .normal)
+//            self.playing = false
+//            self.timer?.invalidate()
         } else {
-            //pauseAndPlayButton.setImage(UIImage(named: "pause"), for: .normal)
-        }
-    }
-
-    func fetchArtwork(for track:SPTAppRemoteTrack) {
-        appRemote.imageAPI?.fetchImage(forItem: track, with: CGSize.zero, callback: { [weak self] (image, error) in
-            if let error = error {
-                //print("Error fetching track image: " + error.localizedDescription)
-            } else if let image = image as? UIImage {
-                //self?.imageView.image = image
+//            self.btnPlayPause.setImage(UIImage(systemName: "pause.fill"), for: .normal)
+//            self.playing = true
+//            if self.timer == nil {
+//                self.startTimer()
             }
-        })
-    }
-
+        }
+       /* self.currentItem.artist = playerState.track.artist.name
+        self.currentItem.title = playerState.track.name
+        self.currentItem.uri = playerState.track.uri
+        self.currentItem.duration = Int64(playerState.track.duration)
+        self.currentItem.position = Int64(playerState.playbackPosition)
+        let duration: CMTime = CMTimeMake(value: self.currentItem.duration!, timescale: 1000)
+        let currentTime: CMTime = CMTimeMake(value: self.currentItem.position!, timescale: 1000)
+ */
+        //let progress: Double = CMTimeGetSeconds(currentTime)/CMTimeGetSeconds(duration)
+       // self.prgPlayingProgress.setProgress(Float(progress), animated: false)
+   // }
+    
     func fetchPlayerState() {
         appRemote.playerAPI?.getPlayerState({ [weak self] (playerState, error) in
             if let error = error {
-                //print("Error getting player state:" + error.localizedDescription)
+                print("Error getting player state:" + error.localizedDescription)
             } else if let playerState = playerState as? SPTAppRemotePlayerState {
                 self?.update(playerState: playerState)
+          //      if let delegate = self!.playerDelegate {
+           //         delegate.updateDetails()
+             //   }
             }
         })
     }
-
     
-    
-    @IBAction func connectAction(_ sender: Any) {
-        let scope: SPTScope = [.appRemoteControl, .playlistReadPrivate]
+    func spotifyConnect() {
+        /*
+         Scopes let you specify exactly what types of data your application wants to
+         access, and the set of scopes you pass in your call determines what access
+         permissions the user is asked to grant.
+         For more information, see https://developer.spotify.com/web-api/using-scopes/.
+         */
+        let scope: SPTScope = [.appRemoteControl, .playlistReadPrivate, .userReadEmail]
 
-        if #available(iOS 11, *) {
-            // Use this on iOS 11 and above to take advantage of SFAuthenticationSession
-            sessionManager.initiateSession(with: scope, options: .clientOnly)
-            print("session Manager . initiate Session")
-        } else {
-            // Use this on iOS versions < 11 to use SFSafariViewController
-            sessionManager.initiateSession(with: scope, options: .clientOnly, presenting: self)
-        }
+        sessionManager.initiateSession(with: scope, options: .clientOnly)
     }
     
-    @IBAction func playAction(_ sender: Any) {
-        appRemote.connect()
-        print("on appuie sur le bouton")
-        print("appRemote.isConnected: ", appRemote.isConnected)
+    // END SPOTIFY
+
+//    @IBAction func connectButton(_ sender: Any) {
+//        print("connect button")
+//        let scope: SPTScope = [.appRemoteControl, .playlistReadPrivate, .userReadEmail]
+//        sessionManager.initiateSession(with: scope, options: .clientOnly)
+//    }
+    
+//    @IBAction func pauseButton(_ sender: Any) {
+//        if let lastPlayerState = lastPlayerState, lastPlayerState.isPaused {
+//            appRemote.playerAPI?.resume(nil)
+//        } else {
+//            appRemote.playerAPI?.pause(nil)
+//        }
+//
+//    }
+//    
+//    @IBAction func disconnectButton(_ sender: Any) {
+//        if (appRemote.isConnected) {
+//            appRemote.disconnect()
+//        }
+//    }
+    
+    @IBAction func connectButton(_ sender: Any) {
+        let scope: SPTScope = [.appRemoteControl, .playlistReadPrivate, .userReadEmail]
+        sessionManager.initiateSession(with: scope, options: .clientOnly)
+    }
+    @IBAction func playButton(_ sender: Any) {
         if let lastPlayerState = lastPlayerState, lastPlayerState.isPaused {
             appRemote.playerAPI?.resume(nil)
         } else {
@@ -116,70 +206,12 @@ class PlayerViewController: UIViewController, SPTSessionManagerDelegate, SPTAppR
         }
     }
     
-    @IBAction func disconnectAction(_ sender: Any) {
+    
+    
+    
+    @IBAction func disconnectButton(_ sender: Any) {
         if (appRemote.isConnected) {
             appRemote.disconnect()
-        }
-    }
-    
-    
-    
-    /*
-                Protocols
-     */
-    
-    // MARK: - SPTSessionManagerDelegate
-
-    func sessionManager(manager: SPTSessionManager, didFailWith error: Error) {
-        print("did fail with error")
-        presentAlertController(title: "Authorization Failed", message: error.localizedDescription, buttonTitle: "Bummer")
-    }
-
-    func sessionManager(manager: SPTSessionManager, didRenew session: SPTSession) {
-        print("did renew")
-        presentAlertController(title: "Session Renewed", message: session.description, buttonTitle: "Sweet")
-    }
-
-    func sessionManager(manager: SPTSessionManager, didInitiate session: SPTSession) {
-        print("did initiate session")
-        appRemote.connectionParameters.accessToken = session.accessToken
-        appRemote.connect()
-    }
-
-    // MARK: - SPTAppRemoteDelegate
-
-    func appRemoteDidEstablishConnection(_ appRemote: SPTAppRemote) {
-        appRemote.playerAPI?.delegate = self
-        appRemote.playerAPI?.subscribe(toPlayerState: { (success, error) in
-            if let error = error {
-                print("Error subscribing to player state:" + error.localizedDescription)
-            }
-        })
-        fetchPlayerState()
-    }
-
-    func appRemote(_ appRemote: SPTAppRemote, didDisconnectWithError error: Error?) {
-        lastPlayerState = nil
-    }
-
-    func appRemote(_ appRemote: SPTAppRemote, didFailConnectionAttemptWithError error: Error?) {
-        lastPlayerState = nil
-    }
-
-    // MARK: - SPTAppRemotePlayerAPIDelegate
-
-    func playerStateDidChange(_ playerState: SPTAppRemotePlayerState) {
-        update(playerState: playerState)
-    }
-
-    // MARK: - Private Helpers
-
-    private func presentAlertController(title: String, message: String, buttonTitle: String) {
-        DispatchQueue.main.async {
-            let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
-            let action = UIAlertAction(title: buttonTitle, style: .default, handler: nil)
-            controller.addAction(action)
-            self.present(controller, animated: true)
         }
     }
     
